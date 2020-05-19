@@ -1,0 +1,32 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+void addBook(string book) {
+	ofstream input;
+	input.open("file.txt");
+input<<book<<endl;
+input.close();
+
+	
+}
+void  readBook() {
+	 ifstream output;
+	 string  data;
+   output.open("file.txt"); 
+ 
+   cout << "Reading name of book from the file" << endl; 
+   output >> data; 
+   cout<<data<<endl;
+   output.close();
+   
+}
+ int main() {
+ 	
+ 	string book;
+ 	cout<<"please enter the name of book"<<endl;
+ 	cin>>book;
+ 	addBook(book);
+ 	readBook();
+ 	
+ }
