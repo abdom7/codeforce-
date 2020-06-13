@@ -1,0 +1,180 @@
+#include<iostream>
+#include<stdio.h>
+#include<fstream>
+using namespace std;
+
+void operation();
+void addbook(){
+	operation();
+	cout<<"the book is added sucessfully"<<endl;
+	
+}
+
+void operation() {
+	char data[100];
+	
+	 string namebook ,temp ;
+	cout<<"please enter The Name of book "<<endl;
+	cin>>namebook;
+	temp = namebook ;
+	namebook = "database/"+namebook+".txt";
+	ofstream   file;
+	file.open(namebook.c_str());
+		file<<" Name : "<<temp<<endl;
+			cin.ignore();
+
+	cout << "please enter book ID : "  << endl;
+			cin.getline(data,100);
+				file<<"Book ID : "<<data<<endl;
+	cout << "please enter author name : "  << endl;
+			cin.getline(data,100);
+				file<<"author name : "<<data<<endl;
+
+	cout << "please enter publisher : " << endl;
+			cin.getline(data,100);
+				file<<"publisher : "<<data<<endl;
+
+	cout << "please enter publication : " << endl;
+			cin.getline(data,100);
+				file<<"publication : "<<data<<endl; 
+
+	cout << "please enter edition : "  << endl;
+			cin.getline(data,100);
+				file<<"the number edition : "<<data <<endl;
+
+	cout << "please enter cost : "  << endl;
+			cin.getline(data,100);
+				file<<"the cost : "<<data<<endl;
+
+	cout << "please enter retail price :  " << endl;
+			cin.getline(data,100);
+				file<< "the retail price : "<<data<<endl;
+
+	file.close();
+	
+
+	
+
+}
+
+
+
+void operation_modify(string namebook) {
+	char data[100];
+	 string temp ;
+	temp = namebook ;
+	namebook = "database/"+namebook+".txt";
+	cout<<namebook<<endl;
+	ofstream   file;
+	file.open(namebook.c_str());
+			file<<" Name : "<<temp<<endl;
+			cin.ignore();
+	cout << "please enter the new book ID : "  << endl;
+			cin.getline(data,100);
+				file<<"Book ID : "<<data<<endl;
+	cout << "please enter the new author name : "  << endl;
+			cin.getline(data,100);
+				file<<"author name : "<<data<<endl;
+
+	cout << "please enter the new  publisher : " << endl;
+			cin.getline(data,100);
+				file<<"publisher : "<<data<<endl;
+
+	cout << "please enter the new publication : " << endl;
+			cin.getline(data,100);
+				file<<"publication : "<<data<<endl; 
+
+	cout << "please enter the new edition : "  << endl;
+			cin.getline(data,100);
+				file<<"the number edition : "<<data <<endl;
+
+	cout << "please enter the new cost : "  << endl;
+			cin.getline(data,100);
+				file<<"the cost : "<<data<<endl;
+
+	cout << "please enter the new retail price :  " << endl;
+			cin.getline(data,100);
+				file<< "the retail price : "<<data<<endl;
+
+	file.close();
+	
+
+	
+
+}
+
+
+bool checkbook(string namebook)
+{ifstream file;
+namebook = "database/"+namebook+".txt";
+file.open(namebook.c_str());
+
+if(file)
+return true;
+else {
+
+return false ;}
+}
+
+void deletecontent(string namebook){
+	namebook = "database/"+namebook+".txt";
+ofstream ofile;
+ofile.open(namebook.c_str(),std::ofstream::out | std::ofstream::trunc);
+ofile.close();
+	
+	
+}
+void menu();
+void modify(){
+	string namebook;
+	cout<<"please enter the name of book : "<<endl;
+	cin>>namebook;
+	if(checkbook(namebook)){
+		deletecontent(namebook);
+			operation_modify(namebook);
+				cout<<"the book is modified sucessfully"<<endl;}
+		
+	else {
+		cout<<"the book is not founded"<<endl;
+	
+		menu();
+	}
+	
+}
+void menu(){
+	
+int input;
+	cout<<"1.add book"<<endl;
+	cout<<"2. modify book"<<endl;
+cin>>input;
+switch(input){
+	case 1 : {
+	
+		addbook();
+		break;
+	}
+	case 2: {
+	
+		modify();
+		break;
+	}
+	
+
+default :{
+	break;
+}
+}
+}
+
+	
+int main(){
+
+	
+	menu();
+	
+}
+
+
+
+
+
